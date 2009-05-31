@@ -32,11 +32,7 @@ plugin 'role_requirement', :git => 'git://github.com/timcharper/role_requirement
 plugin 'restful-authentication', :git => 'git://github.com/technoweenie/restful-authentication.git', :submodule => true
 
 #Features
-plugin 'acts_as_category', :git => 'git://github.com/funkensturm/acts_as_category.git', :submodule => true if yes?("Want Categories ?")
 plugin 'acts_as_taggable_on_steroids', :git => 'git://github.com/mattetti/acts_as_taggable_on_steroids.git', :submodule => true if yes?("Want Tags ?")
-plugin 'acts_as_commentable', :git => 'git://github.com/jackdempsey/acts_as_commentable.git', :submodule => true if yes?("Want Comments ?")
-
-
 
 submodule = yes? "Load submodules?"
 
@@ -64,18 +60,18 @@ initializer 'mailer.rb', <<-END
 
 
   ActionMailer::Base.smtp_settings = {
-     :address => "", #smtp.el-hawari.net
+     :address => "", 
      :port => 25, 
-     :domain => "", #el-hawari.net
+     :domain => "",
      :authentication => :login,
-     :user_name => "", #Username
+     :user_name => "",
      :password => ""
   }
 END
 
-#{variablen}
---> Auslagern in separate Datei
---> Escapen
+#Problems using #{variables}
+# --> use seperate file
+# --> escape em
 
 initializer 'fielderrorproc.rb', <<-END
   
@@ -126,7 +122,7 @@ file 'app/layouts/application.html.erb', <<- CODE
 </html>
 CODE
 
-#geht das besser?
+#dynamic creation of migration files?
 file "db/migrate/1_initial_migration.rb",<<-END
 %q{class InitialMigration < ActiveRecord::Migration
 
